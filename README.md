@@ -7,7 +7,7 @@ Tavallinen kyättäjä voi hakea drinkkireseptejä kannasta ja ehdottaa uusien l
 
 Järjestelmän ylläpitäjä voi lisätä järjestelmään reseptejä joko kokonaan itse tai hyväksyä ehdotettuja reseptejä. Lisääminen voi tapahtua esimerkiksi syöttämällä tiedot lomakkeeseen tai lukemalla resepti (tai useita reseptejä) esimerkiksi tekstitiedostosta. Käyttäjän lisäämät reseptit ylläpitäjä tarkistaa silloin kun käyttäjä lisää ensimmäistä kertaa reseptin sivustolle. Reseptejä voidaan myös "peukuttaa" ylöspäin tai alaspäin. 
 
-#Toimintoja:
+# Toimintoja:
 
 * Kirjautuminen
 * Reseptin haku
