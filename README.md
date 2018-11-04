@@ -18,3 +18,5 @@ Järjestelmän ylläpitäjä voi lisätä järjestelmään reseptejä joko kokon
 * Käyttäjätunnuksen luominen
 * Käyttäjätietojen muutos ja tilin poisto
 * Reseptin peukuttaminen
+
+Linkki herokuun: https://drinkkiarkisto-tsoha.herokuapp.com/
