@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<table>
+    <tr>
+        <th>
+            Drink
+        </th>
+        <th>
+            Done
+        </th>
+    </tr>
+    {% for drink in drinks %}
+    <tr>
+        <td>
+            {{ drink.name }}
+        </td>
+        <td>
+            {{ drink.done }}
+        </td>
+        <td>
+            <form method="POST" action="{{ url_for('drinks_set_done', drink_id=drink.id) }}">
+                <input type="submit" value="Testattu"/>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
