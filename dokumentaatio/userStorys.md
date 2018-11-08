@@ -13,4 +13,3 @@
 *As a user i want to be able to create my own account to the website"
 
 *As a user i want to be able see what i drinks i have voted
-
