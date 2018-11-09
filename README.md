@@ -20,7 +20,7 @@ Järjestelmän ylläpitäjä voi lisätä järjestelmään reseptejä joko kokon
 * Reseptin peukuttaminen
 
 Linkki herokuun: https://drinkkiarkisto-tsoha.herokuapp.com/
-Username = hello
-Password = world
+* Username = hello
+* Password = world
 
 
