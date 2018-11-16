@@ -19,6 +19,9 @@ from app.drinks import models
 from app.drinks import views
 from app.auth import models
 from app.auth import views
+from app.ingredients import models
+from app.ingredients import views
+
 
 # kirjautuminen
 from app.auth.models import User

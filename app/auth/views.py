@@ -3,7 +3,22 @@ from flask_login import login_user, logout_user
 
 from app import app
 from app.auth.models import User
-from app.auth.forms import LoginForm
+from app.auth.forms import LoginForm, RegisterForm
+
+@app.route("/auth/newuser/")
+def auth_register():
+    return render_template("auth/newuser.html", form = RegisterForm())
+
+@app.route("/auth/newuser/", methods=["POST"])
+def auth_create():
+    form = RegisterForm(request.form)
+    if not form.validate():
+        return render_template("auth/newuser.html", form = form)
+    u = User(form.username.data)
+    u = User(form.password.data)
+    db.session().add(d)
+    db.session().commit()
+    return redirect(url_for("index"))
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
