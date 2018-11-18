@@ -8,10 +8,25 @@ from flask_login import login_required, current_user
 def drinks_index():
     return render_template("drinks/list.html", drinks = Drink.query.all())
 
+@app.route("/drinks", methods=["GET","POST"])
+def drinks_delete(drink_id):
+    d = Drink.query.get_or_404(drink_id)
+    db.session().delete(d)
+    db.session.commit()
+    
+    return redirect(url_for("drinks_index"))
+
+
 @app.route("/drinks/new/")
 @login_required
 def drinks_form():
     return render_template("drinks/new.html", form = DrinkForm())
+
+@app.route("/drinks/drink/<int:drink_id>", methods=["GET"])
+@login_required
+def onedrink(drink_id):
+    drink = Drink.query.get_or_404(drink_id)
+    return render_template("drinks/drink.html", name=drink.name, drink=drink)
 
 @app.route("/drinks/<drink_id>/", methods=["POST"])
 @login_required

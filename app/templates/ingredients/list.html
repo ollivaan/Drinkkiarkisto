@@ -23,7 +23,12 @@
             <form method="POST" action="{{ url_for('ingredients_set_done', ingredient_id=ingredient.id) }}">
                 <input type="submit" value="I have this in my fridge"/>
             </form>
-            </td>        
+        </td>
+        <td>
+            <form method="GET" action="{{url_for('one_ingredient', ingredient_id=ingredient.id) }}">
+                <input type="submit" value="Siirry esittelysivulle">
+                </form>
+            </td>                
     </tr>
     {% endfor %}
 </table>

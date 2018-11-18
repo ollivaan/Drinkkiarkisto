@@ -19,10 +19,23 @@
             {{ drink.done }}
         </td>
         <td>
+            {{ drink.date_created.strftime('%Y-%m-%d') }}
+        </td>
+        <td>
+            <form method="GET" action="{{url_for('onedrink', drink_id=drink.id) }}">
+                 <input type="submit" value="Siirry esittelysivulle">
+                 </form>
+        </td>
+        <td>
             <form method="POST" action="{{ url_for('drinks_set_done', drink_id=drink.id) }}">
                 <input type="submit" value="Testattu"/>
             </form>
         </td>
+        <td>
+            <form method="POST" action="{{ url_for('drinks_delete', drink_id=drink.id) }}">
+                <input type="submit" value="poista"/>
+            </form>
+        </td>        
     </tr>
     {% endfor %}
 </table>

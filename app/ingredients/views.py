@@ -13,6 +13,11 @@ def ingredients_index():
 def ingredients_form():
     return render_template("ingredients/new.html", form = IngredientForm())
 
+@app.route("/ingredients/<int:ingredient_id>", methods=["GET"])
+@login_required
+def one_ingredient(ingredient_id):
+  ingredient = Ingredient.query.get_or_404(ingredient_id)
+  return render_template("ingredients/ingredient.html", name=ingredient.name, ingredient=ingredient)
 @app.route("/ingredients/<ingredient_id>/", methods=["POST"])
 @login_required
 def ingredients_set_done(ingredient_id):    
