@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 if os.environ.get("HEROKU"):
-    #os.environ['DATABASE_URL'] = 'postgres://hnaggozxuiysls:b01b96833a5d96e5aa0d8784c6de2797ca97aa8e27cb496ebcfe99cd35c45c5c@ec2-54-235-193-0.compute-1.amazonaws.com:5432/db9hatdvafk754'
+    os.environ['DATABASE_URL'] = 'postgres://hnaggozxuiysls:b01b96833a5d96e5aa0d8784c6de2797ca97aa8e27cb496ebcfe99cd35c45c5c@ec2-54-235-193-0.compute-1.amazonaws.com:5432/db9hatdvafk754'
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///drinks.db"    
