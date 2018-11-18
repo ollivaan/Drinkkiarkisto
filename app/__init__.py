@@ -6,10 +6,14 @@ from flask_sqlalchemy import SQLAlchemy
 # Kaytetään tasks.db-nimista SQLite-tietokantaa. Kolme vinoviivaa
 # kertoo, tiedosto sijaitsee tämän sovelluksen tiedostojen kanssa
 # samassa paikassa
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///drinks.db"
-# Pyydetään sqlalchemyä tulostamaan kaikki sql-kyselyt
-app.config["SQLALCHEMY_ECHO"] = True
+import os
 
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///drinks.db"
+    app.config["SQLALCHEMY_ECHO"] = True
+# Pyydetään sqlalchemyä tulostamaan kaikki sql-kyselyt
 #luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
 #Luetaan kansiosta app tiedoston views sisältö
@@ -41,5 +45,8 @@ login_manager.login_message = "Please login to use this functionality"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
-db.create_all()
+    
+try:
+    db.create_all()
+except:
+    pass
