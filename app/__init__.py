@@ -17,8 +17,10 @@ from app import views
 #luodaan lopulta tarvittavat tietokantataulut sisältö
 from app.drinks import models
 from app.drinks import views
+
 from app.auth import models
 from app.auth import views
+
 from app.ingredients import models
 from app.ingredients import views
 
@@ -29,6 +31,7 @@ from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
 from flask_login import LoginManager
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 

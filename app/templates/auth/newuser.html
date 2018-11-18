@@ -1,8 +1,16 @@
 
 {% block body %}
 {{ error }}
-<form method="POST" action="{{ url_for('auth_register') }}">
+<form method="POST" action="{{ url_for('auth_create') }}">
     <table>
+        <tr>
+            <td>
+                {{ form.name.label }}                
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+        </tr>
         <tr>
             <td>
                 {{ form.username.label }}                
@@ -11,6 +19,7 @@
                 {{ form.username }}
             </td>
         </tr>
+                
         <tr>
             <td>
                 {{ form.password.label }}
@@ -20,7 +29,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <input type="submit" value="Register"/>
             </td>
         </tr>

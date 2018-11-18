@@ -1,22 +1,21 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from app import app
+from app import app, db
 from app.auth.models import User
 from app.auth.forms import LoginForm, RegisterForm
 
 @app.route("/auth/newuser/")
-def auth_register():
+def auth_form():
     return render_template("auth/newuser.html", form = RegisterForm())
 
-@app.route("/auth/newuser/", methods=["POST"])
+@app.route("/auth/", methods=["POST"])
 def auth_create():
     form = RegisterForm(request.form)
     if not form.validate():
         return render_template("auth/newuser.html", form = form)
-    u = User(form.username.data)
-    u = User(form.password.data)
-    db.session().add(d)
+    u = User(form.name.data, form.username.data, form.password.data)    
+    db.session().add(u)
     db.session().commit()
     return redirect(url_for("index"))
 
