@@ -2,7 +2,7 @@ from app import app, db
 from flask import redirect, render_template, request, url_for
 from app.ingredients.models import Ingredient
 from app.ingredients.forms import IngredientForm
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 @app.route("/ingredients", methods=["GET"])
 def ingredients_index():
@@ -18,6 +18,7 @@ def ingredients_form():
 def ingredients_set_done(ingredient_id):    
     i = Ingredient.query.get(ingredient_id)
     i.iHaveIt = True
+  #  i.account_id = current_user.id
     db.session().commit()
     return redirect(url_for("ingredients_index"))
 
@@ -29,7 +30,7 @@ def ingredients_create():
         return render_template("ingredients/new.html", form = form)
     i = Ingredient(form.name.data)
     i.done = form.done.data
-
+    i.account_id = current_user.id
     db.session().add(i)
     db.session().commit()
     

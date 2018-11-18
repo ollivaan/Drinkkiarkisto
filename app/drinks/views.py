@@ -2,7 +2,7 @@ from app import app, db
 from flask import redirect, render_template, request, url_for
 from app.drinks.models import Drink
 from app.drinks.forms import DrinkForm
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 @app.route("/drinks", methods=["GET"])
 def drinks_index():
@@ -18,6 +18,7 @@ def drinks_form():
 def drinks_set_done(drink_id):
     d = Drink.query.get(drink_id)
     d.done = True
+    #d.account_id = current_user.id
     db.session().commit()
     return redirect(url_for("drinks_index"))
 
@@ -29,7 +30,7 @@ def drinks_create():
         return render_template("drinks/new.html", form = form)
     d = Drink(form.name.data)
     d.done = form.done.data
-
+    d.account_id = current_user.id
     db.session().add(d)
     db.session().commit()
     
