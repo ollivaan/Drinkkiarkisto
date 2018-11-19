@@ -30,6 +30,8 @@ from app.auth import views
 from app.ingredients import models
 from app.ingredients import views
 
+from app.drinkIngredients import models
+
 
 # kirjautuminen
 from app.auth.models import User
