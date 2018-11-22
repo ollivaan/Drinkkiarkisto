@@ -24,11 +24,21 @@
                 <input type="submit" value="I have this in my fridge"/>
             </form>
         </td>
-        <td>
+        <td>            
             <form method="GET" action="{{url_for('one_ingredient', ingredient_id=ingredient.id) }}">
                 <input type="submit" value="Siirry esittelysivulle">
                 </form>
-            </td>                
+        </td>
+        <td>
+                <form method="POST" action="{{ url_for('ingredient_delete', ingredient_id=ingredient.id) }}">
+                    <input type="submit" value="delete"/>
+                </form>
+        </td>     
+        <td>
+                <form method="POST" action="{{ url_for('ingredient_update', ingredient_id=ingredient.id) }}">
+                    <input type="submit" value="update"/>
+                </form>
+        </td>                       
     </tr>
     {% endfor %}
 </table>

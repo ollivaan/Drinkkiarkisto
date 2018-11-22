@@ -1,5 +1,5 @@
-from app import db
+#from app import db
 
-class drinkIngredient(db.Model):
-    drink_id = db.Column(db.Integer)
-    ingredient_id =db.Column(db.Integer) 
+#class drinkIngredient(db.Model):
+#    drink_id = db.Column(db.Integer, foreign_key=True)
+#    ingredient_id =db.Column(db.Integer, foreign_key=True) 

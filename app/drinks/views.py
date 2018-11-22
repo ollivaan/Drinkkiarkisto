@@ -8,7 +8,8 @@ from flask_login import login_required, current_user
 def drinks_index():
     return render_template("drinks/list.html", drinks = Drink.query.all())
 
-@app.route("/drinks", methods=["GET","POST"])
+@app.route("/drinks/drink/<int:drink_id>", methods=["POST"])
+@login_required
 def drinks_delete(drink_id):
     d = Drink.query.get_or_404(drink_id)
     db.session().delete(d)
