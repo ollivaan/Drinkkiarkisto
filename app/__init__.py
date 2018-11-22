@@ -30,7 +30,7 @@ from app.auth import views
 from app.ingredients import models
 from app.ingredients import views
 
-#from app.drinkIngredients import models
+from app.drinkIngredients import models
 
 
 # kirjautuminen

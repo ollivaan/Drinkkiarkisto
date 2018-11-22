@@ -11,6 +11,7 @@ class Ingredient(db.Model):
     
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
+    drinkingredients_id = db.relationship("drinkIngredient", lazy=True)                       
     def __init__(self, name):
         self.name = name
         self.iHaveIt = False    
