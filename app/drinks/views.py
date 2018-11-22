@@ -1,7 +1,7 @@
 from app import app, db
 from flask import redirect, render_template, request, url_for
 from app.drinks.models import Drink
-from app.drinks.forms import DrinkForm
+from app.drinks.forms import DrinkForm, DrinkEditForm
 from flask_login import login_required, current_user
 
 @app.route("/drinks", methods=["GET"])
@@ -16,6 +16,30 @@ def drinks_delete(drink_id):
     db.session.commit()
     
     return redirect(url_for("drinks_index"))
+
+@app.route("/drinks/<int:drink_id>/update", methods=["POST", "GET"])
+def drink_update(drink_id):
+    drink = Drink.query.get_or_404(drink_id)
+    form = DrinkEditForm()
+    
+    if  request.method == 'POST':
+
+        editform = DrinkEditForm(request.form)
+
+        #Validoinnin tarkastus
+        if not editform.validate():
+            return render_template("drinks/edit.html",
+             drink=Drink.query.get_or_404(drink_id), form=form)
+
+        drink.name = form.name.data
+        drink.done = form.done.data
+        db.session.commit()
+
+
+        return redirect(url_for("drinks_index", drink_id=drink.id))
+    else:
+        return render_template("drinks/edit.html",
+         drink = Drink.query.get_or_404(drink_id), form=form)
 
 
 @app.route("/drinks/new/")
