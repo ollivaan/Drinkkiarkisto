@@ -1,4 +1,5 @@
 <a href="{{ url_for('drinks_index') }}">Home page</a>
+<form method="POST" action="{{ url_for('ingredient_attach_to_drink') }}"></form>
     <table>
 
             <tr>
@@ -11,4 +12,22 @@
                     {{ drink.done }}
                 </td>
             </tr>
+            {% for ingredient in ingredients %}
+            <input type="hidden" name="drink_id" value="{{drink.id}}">
+            <tr>
+            <td>                
+                <input type="checkbox" id="id_{{ingredient}}" name="ingredients" value="{{ingredient.id}}">
+                <label for="id_{{ingredient.name}}">{{ingredient.name}}</label>
+            </td>
+            <td>
+                {{ingredient.iHaveIt}}    
+            </td>                   
+        </tr>
+        {% endfor %}        
+        <tr>
+                <tr>
+                    <td colspan="3">
+                            <input type="submit" value="Päivitä valituilla aineksilla"/>
+                        </td>
+                    </tr>             
         </table>

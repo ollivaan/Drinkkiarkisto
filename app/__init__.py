@@ -31,6 +31,8 @@ from app.ingredients import models
 from app.ingredients import views
 
 from app.drinkIngredients import models
+from app.ingredientUser import models
+from app.drinkUser import models
 
 
 # kirjautuminen
