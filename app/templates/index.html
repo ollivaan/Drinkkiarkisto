@@ -5,4 +5,33 @@
 
 <h1>Tervetuloa</h1>
 <h2>Jees</h2>
+{% if need_to_drink is defined %}
+<p>
+  Seuraavat käyttäjät ovat olleet kuivin suin:
+</p>
+
+<ul>
+  {% for user in need_to_drink %}
+  <li>
+    {{user.id}} {{user.name}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+
+{% if need_to_slow_down is defined %}
+<p>
+  Seuraavat käyttäjät ovat ottaneet ehkä hieman liikaa:
+</p>
+
+<ul>
+  {% for user in need_to_slow_down or [] %}
+  <li>
+    {{user.id}} {{user.name}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
 {% endblock %}
