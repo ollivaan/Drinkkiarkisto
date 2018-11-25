@@ -31,11 +31,11 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
-"""     @staticmethod
+    @staticmethod
     def find_users_with_no_drinks():
         stmt = text("SELECT Account.id, Account.name FROM Account"
                      " LEFT JOIN Drink ON Drink.account_id = Account.id"
-                     " WHERE (Drink.done IS null OR Drink.done = 1)"
+                     " WHERE (Drink.done IS null OR Drink.done = '1')"
                      " GROUP BY Account.id"
                      " HAVING COUNT(Drink.id) = 0")
                       
@@ -50,7 +50,7 @@ class User(db.Model):
     def find_users_with_ten_drinks():
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Drink ON Drink.account_id = Account.id"
-                    " WHERE (Drink.done >= 10)"
+                    " WHERE (Drink.done >= '10')"
                     " GROUP BY Account.id"
                     " HAVING COUNT(Drink.id) = 0")
         res = db.engine.execute(stmt)
@@ -59,4 +59,4 @@ class User(db.Model):
         for row in res:
             response.append({"id":row[0], "name":row[1]})
 
-        return response    """                 
+        return response                    
