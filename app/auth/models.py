@@ -31,7 +31,7 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
-    @staticmethod
+"""     @staticmethod
     def find_users_with_no_drinks():
         stmt = text("SELECT Account.id, Account.name FROM Account"
                      " LEFT JOIN Drink ON Drink.account_id = Account.id"
@@ -59,4 +59,4 @@ class User(db.Model):
         for row in res:
             response.append({"id":row[0], "name":row[1]})
 
-        return response                    
+        return response    """                 
