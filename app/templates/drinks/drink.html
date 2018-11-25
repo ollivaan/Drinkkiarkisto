@@ -1,33 +1,36 @@
 <a href="{{ url_for('drinks_index') }}">Home page</a>
-<form method="POST" action="{{ url_for('ingredient_attach_to_drink') }}"></form>
-    <table>
 
-            <tr>
-                <td>
-                    
-                    {{ drink.name }}
-                    {{ drink.date_created.strftime('%Y-%m-%d') }}
-                </td>
-                <td>
-                    {{ drink.done }}
-                </td>
-            </tr>
-            {% for ingredient in ingredients %}
-            <input type="hidden" name="drink_id" value="{{drink.id}}">
-            <tr>
-            <td>                
-                <input type="checkbox" id="id_{{ingredient}}" name="ingredients" value="{{ingredient.id}}">
-                <label for="id_{{ingredient.name}}">{{ingredient.name}}</label>
-            </td>
-            <td>
-                {{ingredient.iHaveIt}}    
-            </td>                   
-        </tr>
-        {% endfor %}        
-        <tr>
-                <tr>
-                    <td colspan="3">
-                            <input type="submit" value="Päivitä valituilla aineksilla"/>
-                        </td>
-                    </tr>             
-        </table>
+<table>
+
+    <tr>
+        <td>
+
+            {{ drink.name }}
+            {{ drink.date_created.strftime('%Y-%m-%d') }}
+        </td>
+        <td>
+            {{ drink.done }} 
+       </td>
+    </tr>
+    {% for ingredient in ingredients %}
+    <input type="hidden" name="drink_id" value="{{drink.id}}">
+    <tr>
+        <td>
+            <input type="checkbox" id="id_{{ingredient}}" name="ingredients" value="{{ingredient.id}}">
+            <label for="id_{{ingredient.name}}">{{ingredient.name}}</label>
+        </td>
+        <td>
+            {{ingredient.iHaveIt}}
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+    <tr>
+<!--         <form method="POST" action="<{{ url_for('ingredient_attach_to_drink') }}">
+            <input type="submit" value="Päivitä valituilla aineksilla" /></form> -->
+<!--             vielä piilossa mut menee osoitteiseen ingredient_attach_to_drink mutta jostain syystä ei toimi
+            ilmoittaa että drinks_set_done d.done = true ei tunneta... ihmeellisintä on että en edes kutsu
+            drinks_set_donea tässä --> 
+        </td>
+    </tr>
+</table>

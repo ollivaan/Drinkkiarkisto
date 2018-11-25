@@ -1,6 +1,9 @@
 from app import app, db
 from flask import redirect, render_template, request, url_for
 from app.drinks.models import Drink
+from app.auth.models import User
+from app.drinkIngredients.models import drinkIngredient
+#from app.drinkUser.models import drinkUser
 from app.ingredients.models import Ingredient
 from app.drinks.forms import DrinkForm, DrinkEditForm
 from flask_login import login_required, current_user
@@ -13,6 +16,7 @@ def drinks_index():
 @login_required
 def drinks_delete(drink_id):
     d = Drink.query.get_or_404(drink_id)
+    #Drink.query.filter_by(account_id=account.id, drink_id=drink.id).delete()
     db.session().delete(d)
     db.session.commit()    
     return redirect(url_for("drinks_index"))
@@ -46,12 +50,15 @@ def drinks_form():
 
 @app.route("/drinks/drink/")
 def ingredient_attach_to_drink():
+    return redirect(url_for("drinks_index"))
     if request.method == "POST":
         selected_ingredients = request.form.getlist("ingredients")
 
         for ingId in selected_ingredients:
 #form määr. ingredienDrink mukana attribuutti, mut tollein about
-            d = ingredienDrink()
+#ei vielä toimi
+
+            d = drinkIngredient()
             d.drink_id = form.drink_id.data
             d.ingredient_id = ingId                
             db.session().add(d)
@@ -70,7 +77,8 @@ def onedrink(drink_id):
 def drinks_set_done(drink_id):
     d = Drink.query.get(drink_id)
     d.done = True
-    #d.account_id = current_user.id
+    d.account_id = current_user.id
+    db.session().add(d)
     db.session().commit()
     return redirect(url_for("drinks_index"))
 

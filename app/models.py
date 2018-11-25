@@ -1,3 +1,5 @@
+#laitan tän toimimaan myöhemmin, nyt kun perin userissa ja drinksissä tän 
+#niin taulut ei hiffaa date_created ja date_modified
 from app import db
 
 class Base(db.Model):
