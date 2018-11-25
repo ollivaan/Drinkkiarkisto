@@ -50,7 +50,7 @@ class User(db.Model):
     def find_users_with_ten_drinks():
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Drink ON Drink.account_id = Account.id"
-                    " WHERE (Drink.done >= '10')"
+                    " WHERE (Drink.done >= 10)"
                     " GROUP BY Account.id"
                     " HAVING COUNT(Drink.id) = 0")
         res = db.engine.execute(stmt)
