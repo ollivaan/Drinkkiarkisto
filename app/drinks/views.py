@@ -2,7 +2,7 @@ from app import app, db
 from flask import redirect, render_template, request, url_for
 from app.drinks.models import Drink
 from app.auth.models import User
-from app.drinkIngredients.models import drinkIngredient
+#from app.drinkIngredients.models import drinkIngredient
 #from app.drinkUser.models import drinkUser
 from app.ingredients.models import Ingredient
 from app.drinks.forms import DrinkForm, DrinkEditForm
@@ -56,7 +56,7 @@ def ingredient_attach_to_drink():
 
         for ingId in selected_ingredients:
 #form määr. ingredienDrink mukana attribuutti, mut tollein about
-#ei vielä toimi
+#ei vielä toimi.. oiskohan täällä virhe?
 
             d = drinkIngredient()
             d.drink_id = form.drink_id.data

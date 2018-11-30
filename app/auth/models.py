@@ -3,10 +3,9 @@ from sqlalchemy.sql import text
 class User(db.Model):
     __tablename__="account"
     id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp()),
-    onupdate=db.func.current_timestamp()
 
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
@@ -60,4 +59,4 @@ class User(db.Model):
         for row in res:
             response.append({"id":row[0], "name":row[1]})
 
-        return response                  
+        return response                   
