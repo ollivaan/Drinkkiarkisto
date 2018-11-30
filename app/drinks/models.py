@@ -26,7 +26,7 @@ class Drink(db.Model):
     name = db.Column(db.String(144), nullable=False)
     done = db.Column(db.Boolean, nullable=False)
 
-#    Ingredients = db.relationship("Ingredient", secondary=IngredientsInDrink)
+    recipe = db.relationship("drinkIngredient", backref="Drink")
     owner_id = db.Column(db.Integer, db.ForeignKey('account.id'))
 #    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
