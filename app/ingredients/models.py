@@ -10,8 +10,8 @@ class Ingredient(db.Model):
     iHaveIt = db.Column(db.Boolean, nullable=False)
 
 #    drinks = db.relationship("Drink", secondary=IngredientsInDrink, backref="Drinks")
-
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey('account.id'))
+#    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
              
     def __init__(self, name):
         self.name = name

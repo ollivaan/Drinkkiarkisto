@@ -16,6 +16,8 @@ def drinks_index():
 @login_required
 def drinks_delete(drink_id):
     d = Drink.query.get_or_404(drink_id)
+    if not d or current_user.id != d.owner_id:
+        return redirect(url_for("drinks_index"))
     #Drink.query.filter_by(account_id=account.id, drink_id=drink.id).delete()
     db.session().delete(d)
     db.session.commit()    

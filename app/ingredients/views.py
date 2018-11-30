@@ -17,6 +17,9 @@ def ingredients_form():
 @login_required
 def ingredient_delete(ingredient_id):
     i = Ingredient.query.get_or_404(ingredient_id)
+    if not i or current_user.id != i.owner_id:
+        return redirect(url_for("ingredients_index"))
+
     db.session().delete(i)
     db.session.commit()
     
@@ -25,9 +28,10 @@ def ingredient_delete(ingredient_id):
 
 @app.route("/ingredients/<int:ingredient_id>/update", methods=["POST", "GET"])
 def ingredient_update(ingredient_id):
-    ingredient = Ingredient.query.get_or_404(ingredient_id)
+    i = Ingredient.query.get_or_404(ingredient_id)
     form = IngredientEditForm()
-    
+    if not i or current_user != i.owner_id:
+        return redirect(url_for("ingredients_index"))
     if  request.method == 'POST':
 
         editform = IngredientEditForm(request.form)
@@ -36,6 +40,7 @@ def ingredient_update(ingredient_id):
         if not editform.validate():
             return render_template("ingredients/edit.html",
              ingredient=Ingredient.query.get_or_404(ingredient_id), form=form)
+
 
         ingredient.name = form.name.data
         ingredient.done = form.done.data
