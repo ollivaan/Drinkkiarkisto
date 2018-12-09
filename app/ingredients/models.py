@@ -2,7 +2,7 @@ from app import db
 
 from sqlalchemy.sql import text
 
-
+#Täällä kaikki db Modelit
 
 class DrinkIngredient(db.Model):
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), primary_key=True)
