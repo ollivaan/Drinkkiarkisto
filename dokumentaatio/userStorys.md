@@ -1,17 +1,17 @@
 # UserStorys
 
-* As a user i want to be able to add new drinks to the database so that i can mark them as tried
+* As a user i can add new drinks to the database so that i can create drinks
 
-* As a user i want to be able to view all the drinks in the database
+* As a user i can add new ingredient to the database so that i can create new drink recipies
 
-* As a user i want to be able to search drinks using ingredients search so that i can make drink
+* As a user i can view all the drinks in the database
 
-* As a user i want to be able to vote what is the best drink in my opinion
+* As a user i can view all the ingredients in the database
 
-* As a user i want to be able to export drink recipes to the database"
+* As a user i can edit ingredients in the database
 
-* As a user i want to be able to find most liked/disliked drinks from the database"
+* As a user i can edit drinks in the database
 
-* As a user i want to be able to create my own account to the website"
+* As a user i can delete ingredients in the database
 
-* As a user i want to be able see what i drinks i have voted
+* As a user i can delete drinks in the database
