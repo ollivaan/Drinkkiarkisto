@@ -6,34 +6,32 @@
         <th>
             Drink
         </th>
-        <th>
-            Done
-        </th>
     </tr>
-    {% for drink in drinks %}
+
+    {% for drink in lista %}
     <tr>
         <td>
             {{ drink.name }}
         </td>
+    </tr>       
+    <tr>
         <td>
-            {{ drink.done }}
+            {{ drink.ingredientname}}
         </td>
-        <td>
-            {{ drink.date_created.strftime('%Y-%m-%d') }}
-        </td>
+    </tr>
+    
+    
         <td>
             <form method="GET" action="{{url_for('onedrink', drink_id=drink.id) }}">
                  <input type="submit" value="Siirry esittely/editointi sivulle">
+                 <label for="Siirry lisäämään ainesosia drinkkiin"></label>
                  </form>
         </td>
-        <td>
-            <form method="POST" action="{{ url_for('drinks_set_done', drink_id=drink.id) }}">
-                <input type="submit" value="Testattu"/>
-            </form>
-        </td>
+
         <td>
             <form method="POST" action="{{ url_for('drinks_delete', drink_id=drink.id) }}">
                 <input type="submit" value="poista"/>
+                <label for="Poista drinkki"></label>
             </form>
         </td>                   
     </tr>

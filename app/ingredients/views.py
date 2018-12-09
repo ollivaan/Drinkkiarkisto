@@ -17,8 +17,6 @@ def ingredients_form():
 @login_required
 def ingredient_delete(ingredient_id):
     i = Ingredient.query.get_or_404(ingredient_id)
-    if not i or current_user.id != i.owner_id:
-        return redirect(url_for("ingredients_index"))
 
     db.session().delete(i)
     db.session.commit()
@@ -30,8 +28,7 @@ def ingredient_delete(ingredient_id):
 def ingredient_update(ingredient_id):
     i = Ingredient.query.get_or_404(ingredient_id)
     form = IngredientEditForm()
-    if not i or current_user != i.owner_id:
-        return redirect(url_for("ingredients_index"))
+
     if  request.method == 'POST':
 
         editform = IngredientEditForm(request.form)
@@ -42,12 +39,11 @@ def ingredient_update(ingredient_id):
              ingredient=Ingredient.query.get_or_404(ingredient_id), form=form)
 
 
-        ingredient.name = form.name.data
-        ingredient.done = form.done.data
+        i.name = form.name.data
         db.session.commit()
 
 
-        return redirect(url_for("ingredients_index", ingredient_id=ingredient.id))
+        return redirect(url_for("ingredients_index"))
     else:
         return render_template("ingredients/edit.html",
          ingredient = Ingredient.query.get_or_404(ingredient_id), form=form)
@@ -59,14 +55,7 @@ def one_ingredient(ingredient_id):
   ingredient = Ingredient.query.get_or_404(ingredient_id)
   return render_template("ingredients/ingredient.html", name=ingredient.name, ingredient=ingredient)
 
-@app.route("/ingredients/<ingredient_id>/", methods=["POST"])
-@login_required
-def ingredients_set_done(ingredient_id):    
-    i = Ingredient.query.get(ingredient_id)
-    i.iHaveIt = True
-  #  i.account_id = current_user.id
-    db.session().commit()
-    return redirect(url_for("ingredients_index"))
+
 
 @app.route("/ingredients/", methods=["POST"])
 @login_required
@@ -75,7 +64,6 @@ def ingredients_create():
     if not form.validate():
         return render_template("ingredients/new.html", form = form, legend="Update ingredient")
     i = Ingredient(form.name.data)
-    i.done = form.done.data
     i.account_id = current_user.id
     db.session().add(i)
     db.session().commit()

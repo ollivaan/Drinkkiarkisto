@@ -1,36 +1,32 @@
-<a href="{{ url_for('drinks_index') }}">Home page</a>
+{% extends "layout.html" %}
 
-<table>
+{% block body %}
 
-    <tr>
-        <td>
+<form method="POST" action="{{ url_for('ingredient_attach_to_drink', drink_id=drink.id) }}" label="Liitä ainesosa drinkkiin" >
+    <table>
 
-            {{ drink.name }}
-            {{ drink.date_created.strftime('%Y-%m-%d') }}
-        </td>
-        <td>
-            {{ drink.done }} 
-       </td>
-    </tr>
+        <tr>
+            <td>
+                {{ drink.name }}
+                {{ drink.date_created.strftime('%Y-%m-%d') }}
+            </td>
+        </tr>
     {% for ingredient in ingredients %}
-    <input type="hidden" name="drink_id" value="{{drink.id}}">
-    <tr>
-        <td>
-            <input type="checkbox" id="id_{{ingredient}}" name="ingredients" value="{{ingredient.id}}">
-            <label for="id_{{ingredient.name}}">{{ingredient.name}}</label>
-        </td>
-        <td>
-            {{ingredient.iHaveIt}}
-        </td>
-    </tr>
-    {% endfor %}
-    <tr>
-    <tr>
-<!--         <form method="POST" action="<{{ url_for('ingredient_attach_to_drink') }}">
-            <input type="submit" value="Päivitä valituilla aineksilla" /></form> -->
-<!--             vielä piilossa mut menee osoitteiseen ingredient_attach_to_drink mutta jostain syystä ei toimi
-            ilmoittaa että drinks_set_done d.done = true ei tunneta... ihmeellisintä on että en edes kutsu
-            drinks_set_donea tässä --> 
-        </td>
-    </tr>
-</table>
+        <input type="hidden" name="drink_id" value="{{drink.id}}">
+            <tr>
+                <td>
+                    <input type="checkbox" id="id_{{ingredient}}" name="ingredients" value="{{ingredient.id}}">
+                    <label for="Lisää ainesosa">{{ingredient.name}}</label>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <input type="submit" id="id_{{drink}}" value="Päivitä valituilla aineksilla" >
+                <label for="Lisää"></label>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

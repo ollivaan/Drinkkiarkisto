@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 # Kaytetään tasks.db-nimista SQLite-tietokantaa. Kolme vinoviivaa
 # kertoo, tiedosto sijaitsee tämän sovelluksen tiedostojen kanssa
 # samassa paikassa
-
 import os
 
 if os.environ.get("HEROKU"):
@@ -22,18 +21,20 @@ db = SQLAlchemy(app)
 #Luetaan kansiosta app tiedoston views sisältö
 from app import views
 #luodaan lopulta tarvittavat tietokantataulut sisältö
-from app.drinks import models
+#from app.drinks import models
 from app.drinks import views
 
 from app.auth import models
 from app.auth import views
 
-from app.ingredients import models
+#from app.ingredients import models
 from app.ingredients import views
+from app.ingredients import models
+#from app.drinkIngredient import models
 
-from app.drinkIngredients import models
-from app.ingredientUser import models
-from app.drinkUser import models
+#from app.drinkIngredients import models
+#from app.ingredientUser import models
+#from app.drinkUser import models
 
 
 # kirjautuminen

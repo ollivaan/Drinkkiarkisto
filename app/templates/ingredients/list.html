@@ -6,23 +6,12 @@
         <th>
             Ingredient
         </th>
-        <th>
-            I have it
-        </th>
 
     </tr>
     {% for ingredient in ingredients %}
     <tr>
         <td>
             {{ ingredient.name }}
-        </td>
-        <td>
-            {{ingredient.iHaveIt}}    
-        </td>
-        <td>
-            <form method="POST" action="{{ url_for('ingredients_set_done', ingredient_id=ingredient.id) }}">
-                <input type="submit" value="Minulla on tämä"/>
-            </form>
         </td>
         <td>            
             <form method="GET" action="{{url_for('one_ingredient', ingredient_id=ingredient.id) }}">
