@@ -1,5 +1,4 @@
 from app import db
-from app.models import Base
 from sqlalchemy.sql import text
 class User(Base):
     __tablename__="account"

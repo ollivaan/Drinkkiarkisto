@@ -1,32 +1,28 @@
 from app import app, db
 from flask import redirect, render_template, request, url_for
-from app.ingredients.models import Drink
+
 from app.auth.models import User
-from app.ingredients.models import Ingredient, DrinkIngredient
 from app.drinks.forms import DrinkForm, DrinkEditForm
 from flask_login import login_required, current_user
 
+from app.drinks.models import Drink, DrinkIngredient
+from app.ingredients.models import Ingredient
+
 @app.route("/drinks", methods=["GET"])
 def drinks_index():
-    return render_template("drinks/list.html", drinks = Drink.query.all(), lista = Drink.haelista2())
+    return render_template("drinks/list.html", drinks = Drink.query.all(), lista = Drink.haelista())
 
 @app.route("/drinks/drink/<int:drink_id>/delete", methods=["POST"])
 @login_required
 def drinks_delete(drink_id):
-#    d = Drink.query.get_or_404(drink_id)
-#    db.session.query(Drink).filter(d==1).delete()
-    jee = DrinkIngredient().drink_id
-    d = jee.query.get_or_404(drink_id).first()
 
-#    d = DrinkIngredient()
-#    d.drink_id = drink_id
-    #d = Drink.recipe.filter_by(drink_id=drink.id).first()
-#>>> tagging = post.tags.filter_by(post_id=post.id).first()
+    d = Drink.query.get_or_404(drink_id)
+    if not d or current_user.id != owner_id:
+        return redirect(url_for("drinks_index"))
 
-    db.session().delete(d)
-    db.session.commit()    
+    db.session.delete(d)
+    db.session().commit()
     return redirect(url_for("drinks_index"))
-
 @app.route("/drinks/<int:drink_id>/update", methods=["POST", "GET"])
 def drink_update(drink_id):
     drink = Drink.query.get_or_404(drink_id)

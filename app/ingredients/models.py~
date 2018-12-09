@@ -1,7 +1,6 @@
 from app import db
-from app.models import Base
 
-
+from sqlalchemy.sql import text
 
 
 
