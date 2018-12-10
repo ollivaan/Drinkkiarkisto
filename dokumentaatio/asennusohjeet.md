@@ -25,7 +25,7 @@ Luo tunnukset [herokuun](https://www.heroku.com/) ja asenna [heroku cli](https:/
 heroku create drinkkiarkisto
 heroku config:set HEROKU=1
 heroku addons:add heroku-postgresql-dev
-git remote add heroku <sinun osoite>/drinkkiarkisto.git
+git remote add heroku <sinun osoite>/Drinkkiarkisto.git
 git add -A
 git commit -m "Initial commit"
 git push heroku master
