@@ -11,6 +11,20 @@
                 {{ drink.date_created.strftime('%Y-%m-%d') }}
             </td>
         </tr>
+
+        {% if drink.ingredients|length > 0 %}
+            {% for d in drink.ingredients %}
+            <p class="card-text"><b>Ainesosat</b></p>
+            <table class="table">
+            
+            <tr>
+                <td>
+                    {{d.ingredient.name}}
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </table>
     {% for ingredient in ingredients %}
         <input type="hidden" name="drink_id" value="{{drink.id}}">
             <tr>
@@ -22,8 +36,8 @@
         {% endfor %}
         <tr>
             <td>
-                <input type="submit" id="id_{{drink}}" value="Päivitä valituilla aineksilla" >
-                <label for="Lisää"></label>
+                    <button type="submit" id="id_{{drink}}" class="btn btn-success">Päivitä valituilla aineksilla</button>
+                    <label for="Lisää"></label>
             </td>
         </tr>
     </table>

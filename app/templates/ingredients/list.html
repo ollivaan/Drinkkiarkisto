@@ -13,22 +13,29 @@
         <td>
             {{ ingredient.name }}
         </td>
-        <td>            
-            <form method="GET" action="{{url_for('one_ingredient', ingredient_id=ingredient.id) }}">
-                <input type="submit" value="Siirry esittelysivulle">
+        <td> 
+            <div class="container">
+                <form method="GET" action="{{url_for('one_ingredient', ingredient_id=ingredient.id) }}">
+                    <button type="submit" class="btn btn-primary">Siirry esittelysivulle <span class="badge"></span></button>
+                    <label for="Siirry ainesosan esittelysivulle"></label>    
                 </form>
-        </td>
-        <td>
+            </td>
+            <td>
                 <form method="POST" action="{{ url_for('ingredient_delete', ingredient_id=ingredient.id) }}">
-                    <input type="submit" value="poista"/>
+                        <button type="submit" class="btn btn-danger">Poista <span class="badge"></span></button>
+                        <label for="Poista ainesosa"></label>
                 </form>
-        </td>     
-        <td>
+            </td>     
+            <td>
                 <form method="POST" action="{{ url_for('ingredient_update', ingredient_id=ingredient.id) }}">
-                    <input type="submit" value="päivitä"/>
+                        <button type="submit" class="btn btn-success">Päivitä <span class="badge"></span></button>
+                        <label for="Siirry päivittämään ainesosaa"></label>
                 </form>
-        </td>                       
-    </tr>
+            </td>                       
+        </div> 
+        </tr>
+           
+        </tr>
     {% endfor %}
 </table>
 {% endblock %}

@@ -22,18 +22,31 @@
     
     
         <td>
-            <form method="GET" action="{{url_for('onedrink', drink_id=drink.id) }}">
-                 <input type="submit" value="Siirry esittely/editointi sivulle">
-                 <label for="Siirry lisäämään ainesosia drinkkiin"></label>
-                 </form>
-        </td>
+            <div class="container">
+    
+                    <form method="GET" action="{{url_for('onedrink', drink_id=drink.id) }}">
+                            <button type="submit" class="btn btn-primary">Siirry esittely ja editointi sivulle <span class="badge"></span></button>
+                            <label for="Siirry drinkin esittely sivustolle josta pääset lisäämään ainesosia drinkkiin"></label>
+                            </form>
+                    <td>        
+                    <form method="POST" action="{{ url_for('drinks_delete', drink_id=drink.id) }}">
+                                    <button type="submit" class="btn btn-danger">Poista drinkki <span class="badge"></span></button>
+                                    <label for="Poista drinkki"></label>
+                                    </form>        
+                    </td>
+                    <!-- <td>
+                        <form method="GET" action="{{url_for('drink_update', drink_id=drink.id) }}">
+                                    <button type="submit" class="btn btn-success">Siirry muokkaamaan drinkin nimeä <span class="badge"></span></button>
+                                    <label for="Siirry muokkaamaan drinkin nimeä"></label>
+                                    </form> 
+                    </td>                     -->
+                
+                                       
+            </div>
 
-        <td>
-            <form method="POST" action="{{ url_for('drinks_delete', drink_id=drink.id) }}">
-                <input type="submit" value="poista"/>
-                <label for="Poista drinkki"></label>
-            </form>
-        </td>                   
+        </td>
+        
+                   
     </tr>
     {% endfor %}
 </table>

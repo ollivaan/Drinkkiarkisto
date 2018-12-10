@@ -1,4 +1,4 @@
-
+{% extends "layout.html" %}
 {% block body %}
 {{ error }}
 <form method="POST" action="{{ url_for('auth_create') }}">
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <input type="submit" value="Register"/>
+                    <button type="submit" class="btn btn-success">Rekisteröidy</button>
             </td>
         </tr>
     </table>

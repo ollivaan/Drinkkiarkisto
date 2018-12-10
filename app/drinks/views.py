@@ -23,25 +23,29 @@ def drinks_delete(drink_id):
     db.session.delete(d)
     db.session().commit()
     return redirect(url_for("drinks_index"))
-@app.route("/drinks/<int:drink_id>/update", methods=["POST", "GET"])
+
+@app.route("/drinks/<int:drink_id>/update", methods=["GET", "POST"])
 def drink_update(drink_id):
-    drink = Drink.query.get_or_404(drink_id)
-    form = DrinkEditForm()
+
+    return print("moi")
+
+    # drink = Drink.query.get_or_404(drink_id)
+    # form = DrinkEditForm()
     
-    if  request.method == 'POST':
-        editform = DrinkEditForm(request.form)
+    # if  request.method == 'POST':
+    #     editform = DrinkEditForm(request.form)
 
-        #Validoinnin tarkastus
-        if not editform.validate():
-            return render_template("drinks/edit.html",
-             drink=Drink.query.get_or_404(drink_id), form=form)
+    #     #Validoinnin tarkastus
+    #     if not editform.validate():
+    #         return render_template("drinks/edit.html",
+    #          drink=Drink.query.get_or_404(drink_id), form=form)
 
-        drink.name = form.name.data
-        db.session.commit()
-        return redirect(url_for("drinks_index", drink_id=drink.id))
-    else:
-        return render_template("drinks/edit.html",
-         drink = Drink.query.get_or_404(drink_id), form=form)
+    #     drink.name = form.name.data
+    #     db.session.commit()
+    #     return redirect(url_for("drinks_index", drink_id=drink.id))
+    # else:
+    #     return render_template("drinks/edit.html",
+    #      drink = Drink.query.get_or_404(drink_id), form=form)
 
 
 @app.route("/drinks/new/")
@@ -58,7 +62,7 @@ def ingredient_attach_to_drink(drink_id):
         selected_ingredients = request.form.getlist("ingredients")
       
         for ingId in selected_ingredients:
-            #print(ingId)
+
 
             d = DrinkIngredient()
             d.drink_id = drink_id
@@ -74,15 +78,7 @@ def onedrink(drink_id):
     drink = Drink.query.get_or_404(drink_id)
     return render_template("drinks/drink.html", name=drink.name, drink=drink, ingredients = Ingredient.query.all())
 
-# @app.route("/drinks/<drink_id>/", methods=["POST"])
-# @login_required
-# def drinks_set_done(drink_id):
-#     d = Drink.query.get(drink_id)
-#     d.done = True
-#     d.account_id = current_user.id
-#     db.session().add(d)
-#     db.session().commit()
-#     return redirect(url_for("drinks_index"))
+
 
 @app.route("/drinks/", methods=["POST"])
 @login_required

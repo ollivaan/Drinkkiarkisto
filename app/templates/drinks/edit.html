@@ -4,9 +4,7 @@
 <form method="POST" action="{{ url_for('drink_update') }}">
     <table>
         <tr>
-            <td>
-                {{ form.name.label }}                
-            </td>
+
                 <td>
                     {{ form.name }}
                 </td>
@@ -20,7 +18,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <input type="submit" value="Muokkaa"/>
+                    <button type="submit" class="btn btn-success">Muokkaa</button>
             </td>
         </tr>
     </table>
