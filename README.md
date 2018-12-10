@@ -20,6 +20,7 @@ Käyttäjä voi selata drinkkireseptejä kannasta, lisätä reseptejä ja aineks
 
 * [linkki herokuun](https://drinkkiarkisto-tsoha.herokuapp.com/)
 * [Linkki dokumentaatioon](https://github.com/ollivaan/Drinkkiarkisto/tree/master/dokumentaatio)
+* [Linkki asennusohjeisiin](https://github.com/ollivaan/Drinkkiarkisto/tree/master/dokumentaatio/asennusohjeet.md)
 
 
 
