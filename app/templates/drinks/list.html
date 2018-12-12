@@ -14,18 +14,20 @@
         </td>
     </tr>          
         <td>
- 
+        {% if current_user.is_authenticated %} 
             <div class="container">
     
                     <form method="GET" action="{{url_for('onedrink', drink_id=drink.id) }}">
                             <button type="submit" class="btn btn-primary">Siirry esittely ja editointi sivulle <span class="badge"></span></button>
                             <label for="Siirry drinkin esittely sivustolle josta pääset lisäämään ainesosia drinkkiin"></label>
                             </form>
-                    <td>        
+                    <td> 
+      
                     <form method="POST" action="{{ url_for('drinks_delete', drink_id=drink.id) }}">
                                     <button type="submit" class="btn btn-danger">Poista drinkki <span class="badge"></span></button>
                                     <label for="Poista drinkki"></label>
-                                    </form>        
+                                    </form>  
+                
                     </td>
                     <td>    
                         <form method="POST" action="{{url_for('drink_update', drink_id=drink.id) }}">
@@ -34,7 +36,7 @@
                                     </form> 
                     </td>                                             
             </div>
-
+            {% endif %}      
         </td>                 
     </tr>
     {% endfor %}

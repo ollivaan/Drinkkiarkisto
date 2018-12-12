@@ -89,7 +89,8 @@ def drinks_create():
     if not form.validate():
         return render_template("drinks/new.html", form = form)
     d = Drink(form.name.data)
-    d.account_id = current_user.id
+    if current_user is not None:
+        d.account_id = current_user.id    
     db.session().add(d)
     db.session().commit()
     
