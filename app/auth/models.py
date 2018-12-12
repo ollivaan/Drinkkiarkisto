@@ -28,21 +28,21 @@ class User(Base):
     def is_authenticated(self):
         return True
 
-    # @staticmethod
-    # def find_users_with_no_drinks():
-    #     stmt = text("SELECT Account.id, Account.name FROM Account"
-    #                  " LEFT JOIN Drink ON Drink.account_id = Account.id"
-    #                  " GROUP BY Account.id"
-    #                  " HAVING COUNT(Drink.id) = '0'")
+    @staticmethod
+    def find_users_with_no_drinks():
+        stmt = text("SELECT Account.id, Account.name FROM Account"
+                     " LEFT JOIN Drink ON Drink.account_id = Account.id"
+                     " GROUP BY Account.id"
+                     " HAVING COUNT(Drink.id) = 0")
                      
                       
-    #     res = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
 
-    #     response = []
-    #     for row in res:
-    #         response.append({"id":row[0], "name":row[1]})
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1]})
 
-    #     return response
+        return response
 
     # @staticmethod
     # def find_users_with_five_drinks():
