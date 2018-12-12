@@ -1,25 +1,23 @@
 {% extends "layout.html" %}
-
 {% block body %}
 
 <form method="POST" action="{{ url_for('ingredient_attach_to_drink', drink_id=drink.id) }}" label="Liitä ainesosa drinkkiin" >
     <table>
-
         <tr>
             <td>
-                {{ drink.name }}
-                {{ drink.date_created.strftime('%Y-%m-%d') }}
+                <h3 class="text-muted">Drinkin tiedot: </h3>
+                <h5>Drinkin nimi: {{ drink.name }}</h5>
+                <h6>Luontipvm: {{ drink.date_created.strftime('%Y-%m-%d') }}</h6>
+                
             </td>
         </tr>
-
         {% if drink.ingredients|length > 0 %}
+            <h4>Ainesosat</h4>
             {% for d in drink.ingredients %}
-            <p class="card-text"><b>Ainesosat</b></p>
-            <table class="table">
-            
+            <table class="table">            
             <tr>
                 <td>
-                    {{d.ingredient.name}}
+                    {{d.ingredient.name}}                   
                 </td>
             </tr>
             {% endfor %}

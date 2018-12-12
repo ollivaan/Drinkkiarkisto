@@ -3,13 +3,13 @@
 <!DOCTYPE html>
   <link rel="stylesheet" href="style.css">
 
-<!-- {% if need_to_drink is defined %}
-<p>
-  Seuraavat käyttäjät ovat olleet kuivin suin:
-</p>
+{% if need_to_create is defined %}
+<h4>
+  Seuraavat käyttäjät eivät ole luoneet drinkkejä:
+</h4>
 
 <ul>
-  {% for user in need_to_drink %}
+  {% for user in need_to_create %}
   <li>
     {{user.id}} {{user.name}}
   </li>
@@ -18,18 +18,4 @@
 
 {% endif %}
 
-{% if need_to_slow_down is defined %}
-<p>
-  Seuraavat käyttäjät ovat ottaneet ehkä hieman liikaa:
-</p>
-
-<ul>
-  {% for user in need_to_slow_down or [] %}
-  <li>
-    {{user.id}} {{user.name}}
-  </li>
-  {% endfor %}
-</ul> -->
-
-{% endif %}
 {% endblock %}

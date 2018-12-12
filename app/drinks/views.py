@@ -8,7 +8,7 @@ from app.ingredients.models import Ingredient
 
 @app.route("/drinks", methods=["GET"])
 def drinks_index():
-    return render_template("drinks/list.html", drinks = Drink.query.all(), lista = Drink.haelista())
+    return render_template("drinks/list.html", drinks = Drink.query.all())
 
 @app.route("/drinks/drink/<int:drink_id>/delete", methods=["POST"])
 @login_required
@@ -22,28 +22,31 @@ def drinks_delete(drink_id):
     db.session().commit()
     return redirect(url_for("drinks_index"))
 
-@app.route("/drinks/<int:drink_id>/update", methods=["GET", "POST"])
+
+
+@app.route("/drinks/<int:drink_id>/update", methods=["POST", "GET"])
+@login_required
 def drink_update(drink_id):
 
-    return print("moi")
+    d = Drink.query.get_or_404(drink_id)
+    form = DrinkEditForm()    
 
-    # drink = Drink.query.get_or_404(drink_id)
-    # form = DrinkEditForm()
     
-    # if  request.method == 'POST':
-    #     editform = DrinkEditForm(request.form)
+    if  request.method == 'POST':
+        editform = DrinkEditForm(request.form)
+        #Validoinnin tarkastus
+        if not editform.validate():
+            return render_template("drinks/edit.html",
+             drink=Drink.query.get_or_404(drink_id), form=form)
 
-    #     #Validoinnin tarkastus
-    #     if not editform.validate():
-    #         return render_template("drinks/edit.html",
-    #          drink=Drink.query.get_or_404(drink_id), form=form)
+        d.name = form.name.data
+        db.session.commit()
 
-    #     drink.name = form.name.data
-    #     db.session.commit()
-    #     return redirect(url_for("drinks_index", drink_id=drink.id))
-    # else:
-    #     return render_template("drinks/edit.html",
-    #      drink = Drink.query.get_or_404(drink_id), form=form)
+        return redirect(url_for("drinks_index"))
+    else:
+        return render_template("drinks/edit.html",
+         drink = Drink.query.get_or_404(drink_id), form=form)
+
 
 
 @app.route("/drinks/new/")
@@ -52,6 +55,7 @@ def drinks_form():
     return render_template("drinks/new.html", form = DrinkForm())
 
 @app.route("/drinks/drink/<int:drink_id>/attach", methods=["POST"])
+@login_required
 def ingredient_attach_to_drink(drink_id):
 
     d = Drink.query.get_or_404(drink_id)

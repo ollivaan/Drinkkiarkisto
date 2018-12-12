@@ -22,15 +22,15 @@ class Drink(Base):
         self.name = name
         self.accepted = False
 
-    def haelista():
-        stmt = text("SELECT Drink.id, Drink.name, Drink.date_created, Ingredient.name AS ingredientname FROM Drink"
-                    " LEFT JOIN drink_ingredient ON drink_ingredient.drink_id = Drink.id"
-                    " LEFT JOIN Ingredient ON Ingredient.id = drink_ingredient.ingredient_id"
-                    " GROUP BY Drink.id, Ingredient.id")
-        res = db.engine.execute(stmt)
+    # def haelista():
+    #     stmt = text("SELECT Drink.id, Drink.name, Drink.date_created, Ingredient.name AS ingredientname FROM Drink"
+    #                 " LEFT JOIN drink_ingredient ON drink_ingredient.drink_id = Drink.id"
+    #                 " LEFT JOIN Ingredient ON Ingredient.id = drink_ingredient.ingredient_id"
+    #                 " GROUP BY Drink.id, Ingredient.id")
+    #     res = db.engine.execute(stmt)
 
 
-        return res    
+    #     return res    
 
 class DrinkIngredient(Base):
     __tablename__ = 'drink_ingredient'

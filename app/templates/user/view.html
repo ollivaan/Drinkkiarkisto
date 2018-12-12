@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if user is none %}
+<div class="alert alert-danger">
+    Käyttäjätunnusta ei löytynyt.
+</div>
+{%else%}
+<h3 class="text-muted">Käyttäjän tiedot: </h3>
+<h4>Käyttäjän nimi: {{ user.username }}</h4>
+<h4>Nimi: {{ user.name }}</h4>
+
+<h5 class="text-muted">Käyttäjän lisäämät drinkit:</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Drinkki</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for drink in user.drinks %}
+        <tr>
+            <td> 
+                <a href="{{url_for('onedrink', drink_id=drink.id) }}">{{ drink.name }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+{% endif %}
+{% endblock %}                

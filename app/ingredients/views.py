@@ -25,6 +25,7 @@ def ingredient_delete(ingredient_id):
 
 
 @app.route("/ingredients/<int:ingredient_id>/update", methods=["POST", "GET"])
+@login_required
 def ingredient_update(ingredient_id):
     i = Ingredient.query.get_or_404(ingredient_id)
     form = IngredientEditForm()

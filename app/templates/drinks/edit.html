@@ -1,26 +1,26 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('drink_update') }}">
-    <table>
-        <tr>
-
+<form method="POST" action="{{ url_for('drink_update', drink_id=drink.id) }}">
+        <table>
+            <tr>
+    
+                    <td>
+                        {{ form.name }}
+                    </td>
                 <td>
-                    {{ form.name }}
+                    <ul>
+                        {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
                 </td>
-            <td>
-                <ul>
-                    {% for error in form.name.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                    <button type="submit" class="btn btn-success">Muokkaa</button>
-            </td>
-        </tr>
-    </table>
-</form>
+            </tr>
+            <tr>
+                <td colspan="3">
+                        <button type="submit" class="btn btn-success">Muokkaa</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 {% endblock %}

@@ -33,6 +33,7 @@ from app.ingredients import views
 from app.drinks import models
 from app.drinks import views
 
+from app.user import views
 
 
 
