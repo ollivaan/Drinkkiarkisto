@@ -1,10 +1,8 @@
 from app import app, db
 from flask import redirect, render_template, request, url_for
-
 from app.auth.models import User
 from app.drinks.forms import DrinkForm, DrinkEditForm
 from flask_login import login_required, current_user
-
 from app.drinks.models import Drink, DrinkIngredient
 from app.ingredients.models import Ingredient
 
