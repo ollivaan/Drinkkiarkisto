@@ -33,7 +33,7 @@ class User(Base):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                      " LEFT JOIN Drink ON Drink.account_id = Account.id"
                      " GROUP BY Account.id"
-                     " HAVING COUNT(Drink.id) = 0")
+                     " HAVING COUNT(Drink.id) = '0'")
                      
                       
         res = db.engine.execute(stmt)
@@ -49,7 +49,7 @@ class User(Base):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                      " LEFT JOIN Drink ON Drink.account_id = Account.id"
                      " GROUP BY Account.id"
-                     " HAVING COUNT(Drink.id) > 5")
+                     " HAVING COUNT(Drink.id) > '5'")
         res = db.engine.execute(stmt)
 
         response = []
