@@ -3,19 +3,6 @@
 <!DOCTYPE html>
   <link rel="stylesheet" href="style.css">
 
-{% if need_to_create is defined %}
-<h4>
-  Seuraavat käyttäjät eivät ole luoneet drinkkejä:
-</h4>
 
-<ul>
-  {% for user in need_to_create %}
-  <li>
-    {{user.id}} {{user.name}}
-  </li>
-  {% endfor %}
-</ul>
-
-{% endif %}
 
 {% endblock %}
