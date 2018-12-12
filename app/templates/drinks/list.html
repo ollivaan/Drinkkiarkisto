@@ -13,8 +13,9 @@
             {{ drink.name }}
         </td>
     </tr>          
-        <td>
+        
         {% if current_user.is_authenticated %} 
+        <td>
             <div class="container">
     
                     <form method="GET" action="{{url_for('onedrink', drink_id=drink.id) }}">
@@ -36,8 +37,8 @@
                                     </form> 
                     </td>                                             
             </div>
-            {% endif %}      
-        </td>                 
+        </td>
+        {% endif %}                     
     </tr>
     {% endfor %}
 </table>

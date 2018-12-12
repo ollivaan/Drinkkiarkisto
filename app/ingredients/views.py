@@ -63,9 +63,10 @@ def one_ingredient(ingredient_id):
 def ingredients_create():
     form = IngredientForm(request.form)
     if not form.validate():
-        return render_template("ingredients/new.html", form = form, legend="Update ingredient")
+        return render_template("ingredients/new.html", form = form)
     i = Ingredient(form.name.data)
-    i.account_id = current_user.id
+    if current_user is not None:
+        i.account_id = current_user.id
     db.session().add(i)
     db.session().commit()
     

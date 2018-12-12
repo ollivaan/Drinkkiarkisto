@@ -26,8 +26,7 @@ def drinks_delete(drink_id):
 
 @app.route("/drinks/<int:drink_id>/update", methods=["POST", "GET"])
 @login_required
-def drink_update(drink_id):
-
+def drink_update(drink_id): 
     d = Drink.query.get_or_404(drink_id)
     form = DrinkEditForm()    
 
