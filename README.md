@@ -22,6 +22,6 @@ Käyttäjä voi selata drinkkireseptejä kannasta, lisätä reseptejä ja aineks
 * [Linkki dokumentaatioon](https://github.com/ollivaan/Drinkkiarkisto/tree/master/dokumentaatio)
 * [Linkki asennusohjeisiin](https://github.com/ollivaan/Drinkkiarkisto/tree/master/dokumentaatio/asennusohjeet.md)
 * [Linkki käyttöohjeisiin](https://github.com/ollivaan/Drinkkiarkisto/tree/master/dokumentaatio/kayttöohje.md)
-
+* [Linkki userStoryihin](https://github.com/ollivaan/Drinkkiarkisto/blob/master/dokumentaatio/userStorys.md)
 
 
